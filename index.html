@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SBJR Invoice Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0"><i class="fas fa-file-invoice-dollar me-2"></i>SBJR Invoice Generator</h4>
+        <button id="printBtn" class="btn btn-light btn-sm"><i class="fas fa-print"></i> Print</button>
+      </div>
+      <div class="card-body" id="invoice">
+        <!-- Company Header -->
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Suraj Bhan Jagdish Rai (SBJR)</h2>
+          <p class="mb-0">
+            Ground floor, SBJR building, New Market,<br/>
+            Ponta Sahib road, Chhachhrauli,<br/>
+            Yamunanagar District, Haryana, India — 135103<br/>
+            <strong>Phone:</strong> +91 9499145221
+          </p>
+        </div>
+
+        <hr/>
+
+        <!-- Invoice Meta -->
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label fw-bold">Invoice No.</label>
+              <input type="text" id="invoiceNo" class="form-control" readonly/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Date</label>
+              <input type="date" id="invoiceDate" class="form-control" required/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h5>Bill To:</h5>
+            <textarea id="clientDetails" class="form-control" rows="4" placeholder="Client Name&#10;Address&#10;GSTIN (optional)"></textarea>
+          </div>
+        </div>
+
+        <!-- Items Table -->
+        <div class="table-responsive mb-4">
+          <table class="table table-bordered align-middle" id="itemsTable">
+            <thead class="table-light">
+              <tr>
+                <th width="25%">Item Description</th>
+                <th width="10%">Qty</th>
+                <th width="15%">Unit Price</th>
+                <th width="12%">Discount (%)</th>
+                <th width="12%">Taxable Value</th>
+                <th width="12%">Tax Type</th>
+                <th width="12%">Tax Amount</th>
+                <th width="10%">Total</th>
+                <th width="5%"><button class="btn btn-success btn-sm" id="addRow"><i class="fas fa-plus"></i></button></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows added dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Totals -->
+        <div class="row justify-content-end">
+          <div class="col-md-5">
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr><td>Subtotal</td><td class="text-end"><strong id="subtotal">₹0.00</strong></td></tr>
+                <tr><td>CGST</td><td class="text-end"><strong id="cgst">₹0.00</strong></td></tr>
+                <tr><td>SGST</td><td class="text-end"><strong id="sgst">₹0.00</strong></td></tr>
+                <tr><td>IGST</td><td class="text-end"><strong id="igst">₹0.00</strong></td></tr>
+                <tr><td>Rounding Adjustment</td><td class="text-end"><strong id="rounding">₹0.00</strong></td></tr>
+                <tr class="fw-bold fs-5"><td>Grand Total</td><td class="text-end"><strong id="grandTotal">₹0.00</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-4 text-center">
+          <button id="saveInvoice" class="btn btn-primary me-2"><i class="fas fa-save"></i> Save to Browser</button>
+          <button id="loadInvoice" class="btn btn-secondary me-2"><i class="fas fa-folder-open"></i> Load Last</button>
+          <button id="newInvoice" class="btn btn-outline-danger"><i class="fas fa-file"></i> New Invoice</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
